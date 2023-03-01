@@ -81,6 +81,7 @@ li.editing .todo__item {
 
 .todo__item {
   border-top: 1px solid #e6e6e6;
+	position: relative;
 }
 
 .todo__remove {
