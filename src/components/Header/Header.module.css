@@ -1,0 +1,6 @@
+.title {
+  text-align: center;
+  font-size: 100px;
+  color: rgba(175, 47, 47, 0.15);
+  user-select: none;
+}
