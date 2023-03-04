@@ -11,7 +11,9 @@ export const Checkbox: FC<{id: string; completed: boolean}> = ({id, completed}) 
 	}
 
 	return (
+		// key math.random() решает проблему отсутствия перерисовки при нажатии на toggleAll (кнопка из ContentMain)
 		<input
+			key={Math.random()}
 			onClick={(e) => onClickHandler()}
 			className={s.toggle}
 			type='checkbox'

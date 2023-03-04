@@ -96,6 +96,22 @@ export const todosSlice = createSlice({
 		setFilter: (state, action: PayloadAction<FilterType>) => {
 			state.todosFilter = action.payload
 		},
+
+		toggleAll: (state) => {
+			let completedValue = true
+			if (state.activeCount === 0) {
+				// все нужно активировать
+				completedValue = false
+				state.activeCount = state.count
+				state.completedCount = 0
+			} else {
+				// иначе всем установить completed = true, что при инициализации задалось
+				state.completedCount = state.count
+				state.activeCount = 0
+			}
+
+			state.todos.forEach((todo) => (todo.completed = completedValue))
+		},
 	},
 })
 
@@ -107,6 +123,7 @@ export const {
 	changeCompletedTodo,
 	clearCompletedTodos,
 	setFilter,
+	toggleAll,
 } = todosSlice.actions
 
 export const selectActiveTodosCount = (state: RootState) => state.todos.activeCount
