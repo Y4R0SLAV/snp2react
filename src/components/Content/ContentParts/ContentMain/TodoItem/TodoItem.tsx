@@ -1,88 +1,58 @@
 import {FC, useState} from 'react'
 import {useDispatch} from 'react-redux'
-import {changeCompletedTodo, changeTextTodo, removeTodo} from '../../../../../redux/reducers/todos'
+import {removeTodo} from '../../../../../redux/reducers/todos'
+
+import {Checkbox} from './TodoItemParts/Checkbox/Checkbox'
+import {EditInput} from './TodoItemParts/EditInput/EditInput'
+import {TextBlock} from './TodoItemParts/TextBlock/TextBlock'
+
 import s from './TodoItem.module.css'
 import classNames from 'classnames/bind'
 
-const TodoItemCheckbox: FC<{id: string; completed: boolean}> = ({id, completed}) => {
+const TodoItemRemoveButton: FC<{id: string}> = ({id}) => {
 	const dispatch = useDispatch()
-
-	const onClickHandler = () => {
-		dispatch(changeCompletedTodo({id, completed: !completed}))
-	}
-
-	return (
-		<input
-			onClick={(e) => onClickHandler()}
-			className={s.toggle}
-			type='checkbox'
-			defaultChecked={completed}
-		/>
-	)
-}
-
-export const TodoItem: FC<TodoItemType & {hide: boolean}> = ({title, id, completed, hide}) => {
-	const [editingText, setEditingText] = useState(title)
-	const [editing, setEditing] = useState(false)
-	const cx = classNames.bind(s)
-
-	const dispatch = useDispatch()
-
-	const change = () => {
-		dispatch(changeTextTodo({id, title: editingText}))
-		setEditing(false)
-	}
-
-	const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setEditingText(e.currentTarget.value)
-	}
 
 	const onClickHandler = (id: string) => {
 		dispatch(removeTodo(id))
 	}
 
-	const onDoubleClickHandler = () => {
-		setEditing(true)
-	}
+	return (
+		<button
+			onClick={(e) => onClickHandler(id)}
+			className={s.remove}
+		></button>
+	)
+}
 
-	const onKeyDownHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
-		if (e.key === 'Enter') {
-			e.preventDefault()
-			change()
-		}
-	}
+export const TodoItem: FC<TodoItemType & {hide: boolean}> = ({title, id, completed, hide}) => {
+	const [editing, setEditing] = useState(false)
+	const cx = classNames.bind(s)
 
 	return (
 		<li
 			id={id}
-			className={cx({editing, completed, hide})}
+			className={cx({Root: true, editing, completed, hide})}
 		>
 			<div className={s.item}>
-				<TodoItemCheckbox
+				<Checkbox
 					completed={completed}
 					id={id}
 				/>
 
-				<label
-					className={s.text}
-					onDoubleClick={(e) => onDoubleClickHandler()}
-				>
-					{title}
-				</label>
-				<button
-					onClick={(e) => onClickHandler(id)}
-					className={s.remove}
-				></button>
+				<TextBlock
+					title={title}
+					setEditing={setEditing}
+				/>
+
+				<TodoItemRemoveButton id={id} />
 			</div>
 
-			<input
-				type='text'
-				className={s.edit}
-				value={editingText}
-				onChange={(e) => onChangeHandler(e)}
-				onBlur={(e) => change()}
-				onKeyDown={(e) => onKeyDownHandler(e)}
-			></input>
+			<EditInput
+				setEditing={setEditing}
+				id={id}
+				title={title}
+				isEditing={editing}
+			/>
 		</li>
 	)
 }
