@@ -1,33 +1,67 @@
-import { addTodo, initializeTodos, selectTodos } from "../../../../redux/reducers/todos"
-import s from "./ContentMain.module.css"
-import { TodoItem, TodoItemType } from "./TodoItem/TodoItem"
-import { useDispatch, useSelector } from "react-redux"
-import { useEffect } from "react"
-import { getTodosLS, setTodosLS } from './../../../../localStorageInteraction'
-
-
+import {
+	ActiveType,
+	AllType,
+	CompletedType,
+	initializeTodos,
+	selectFilter,
+	selectTodos,
+} from '../../../../redux/reducers/todos'
+import s from './ContentMain.module.css'
+import {TodoItem} from './TodoItem/TodoItem'
+import {useDispatch, useSelector} from 'react-redux'
+import {useEffect} from 'react'
+import {getTodosLS, setTodosLS} from './../../../../localStorageInteraction'
 
 export const ContentMain = () => {
-  const todoItems: Array<TodoItemType> = useSelector(selectTodos)
-  const dispatch = useDispatch()
+	const todoItems = useSelector(selectTodos)
+	const todosFilter = useSelector(selectFilter)
 
-  useEffect(() => {
-    const todosFromLS = getTodosLS()
-    if (todosFromLS.length > 0) {
-      dispatch(initializeTodos(todosFromLS))
-    }
-  }, [])
+	const dispatch = useDispatch()
 
-  useEffect(() => {
-    setTodosLS(todoItems)
-  }, [todoItems])
-  
-  return <div className={s.form__main}>
-    <input id="toggle-all" className={s.todo__toggleAll} type="checkbox" />
-    <label htmlFor="toggle-all">Mark all as complete</label>
+	useEffect(() => {
+		const todosFromLS = getTodosLS()
+		if (todosFromLS.length > 0) {
+			dispatch(initializeTodos(todosFromLS))
+		}
+	}, [dispatch])
 
-    <ul className={s.todo__items}>
-      {todoItems.map(todo => <TodoItem key={todo.id} title={todo.title} id={todo.id} completed={todo.completed}/>)}
-    </ul>
-</div>
+	useEffect(() => {
+		setTodosLS(todoItems)
+	}, [todoItems])
+
+	return (
+		<div className={s.form__main}>
+			<input
+				id='toggle-all'
+				className={s.todo__toggleAll}
+				type='checkbox'
+			/>
+			<label htmlFor='toggle-all'>Mark all as complete</label>
+
+			<ul className={s.todo__items}>
+				{todoItems.map((todo) => {
+					let show = true
+				
+					switch (todosFilter) {
+						case ActiveType:
+							show = todo.completed === false
+							break;
+						case CompletedType:
+							show = todo.completed === true
+							break;
+						default:
+							break;
+					}
+
+					return <TodoItem
+						key={todo.id}
+						title={todo.title}
+						id={todo.id}
+						completed={todo.completed}
+						hide={!show}
+					/>
+				})}
+			</ul>
+		</div>
+	)
 }
