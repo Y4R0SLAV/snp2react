@@ -1,6 +1,6 @@
 import {FC, useState} from 'react'
 import {useDispatch} from 'react-redux'
-import { changeCompletedTodo, changeTextTodo, removeTodo} from '../../../../../redux/reducers/todos'
+import {changeCompletedTodo, changeTextTodo, removeTodo} from '../../../../../redux/reducers/todos'
 import s from './TodoItem.module.css'
 import classNames from 'classnames/bind'
 
@@ -14,7 +14,7 @@ const TodoItemCheckbox: FC<{id: string; completed: boolean}> = ({id, completed})
 	return (
 		<input
 			onClick={(e) => onClickHandler()}
-			className={s.todo__toggle}
+			className={s.toggle}
 			type='checkbox'
 			defaultChecked={completed}
 		/>
@@ -53,32 +53,31 @@ export const TodoItem: FC<TodoItemType & {hide: boolean}> = ({title, id, complet
 	}
 
 	return (
-		// у li класс completed если выполнен соответсвенно
 		<li
 			id={id}
 			className={cx({editing, completed, hide})}
 		>
-			<div className={s.todo__item}>
+			<div className={s.item}>
 				<TodoItemCheckbox
 					completed={completed}
 					id={id}
 				/>
 
 				<label
-					className={s.todo__text}
+					className={s.text}
 					onDoubleClick={(e) => onDoubleClickHandler()}
 				>
 					{title}
 				</label>
 				<button
 					onClick={(e) => onClickHandler(id)}
-					className={s.todo__remove}
+					className={s.remove}
 				></button>
 			</div>
 
 			<input
 				type='text'
-				className={s.todo__edit}
+				className={s.edit}
 				value={editingText}
 				onChange={(e) => onChangeHandler(e)}
 				onBlur={(e) => change()}

@@ -1,5 +1,5 @@
-import s from "./Header.module.css"
+import s from './Header.module.css'
 
 export const Header = () => {
-  return <div className={s.title}>todos</div>
+	return <div className={s.Root}>todos</div>
 }

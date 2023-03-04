@@ -12,15 +12,15 @@ export const ClearButton = () => {
 	const dispatch = useDispatch()
 	const cx = classNames.bind(s)
 
-	const clearButtonhandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+	const clearButtonHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 		e.preventDefault()
 		dispatch(clearCompletedTodos())
 	}
 
 	return (
-		<div className={s.clear}>
+		<div className={s.Root}>
 			<button
-				onClick={(e) => clearButtonhandler(e)}
+				onClick={(e) => clearButtonHandler(e)}
 				className={cx({button: true, hide: completedTodosCount === 0})}
 			>
 				Clear completed {completedTodosCount}

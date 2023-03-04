@@ -30,36 +30,38 @@ export const ContentMain = () => {
 	}, [todoItems])
 
 	return (
-		<div className={s.form__main}>
+		<div className={s.Root}>
 			<input
 				id='toggle-all'
-				className={s.todo__toggleAll}
+				className={s.toggleAll}
 				type='checkbox'
 			/>
 			<label htmlFor='toggle-all'>Mark all as complete</label>
 
-			<ul className={s.todo__items}>
+			<ul className={s.items}>
 				{todoItems.map((todo) => {
 					let show = true
-				
+
 					switch (todosFilter) {
 						case ActiveType:
 							show = todo.completed === false
-							break;
+							break
 						case CompletedType:
 							show = todo.completed === true
-							break;
+							break
 						default:
-							break;
+							break
 					}
 
-					return <TodoItem
-						key={todo.id}
-						title={todo.title}
-						id={todo.id}
-						completed={todo.completed}
-						hide={!show}
-					/>
+					return (
+						<TodoItem
+							key={todo.id}
+							title={todo.title}
+							id={todo.id}
+							completed={todo.completed}
+							hide={!show}
+						/>
+					)
 				})}
 			</ul>
 		</div>

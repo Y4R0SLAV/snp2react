@@ -25,9 +25,9 @@ export const ContentHeader = () => {
 
   const onChangeHandler = ((e: React.ChangeEvent<HTMLInputElement>) => setTodoText(e.currentTarget.value))
 
-  return <div className={s.form__header}>
+  return <div className={s.Root}>
 
-    <input  className={s.header__newTodo} 
+    <input  className={s.newTodo} 
             value={todoText} 
             onKeyDown = {e => onKeyDownHandler(e)} 
             onChange={e => onChangeHandler(e)}

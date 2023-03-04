@@ -16,7 +16,7 @@ export const FooterFilter: React.FC<FooterFilterType> = ({
 
 	return (
 		<div
-			className={s.filter}
+			className={s.Root}
 			key={id}
 			onClick={() => {
 				setCurrentFilterId(id)
