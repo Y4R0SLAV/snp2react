@@ -9,7 +9,7 @@ import {
 import {useSelector} from 'react-redux'
 import {FooterFilter} from './FooterParts/FooterFilter/FooterFilter'
 import {ClearButton} from './FooterParts/ClearButton/ClearButton'
-import { CountBlock } from '../../../common/CountBlock/CountBlock'
+import {CountBlock} from '../../../common/CountBlock/CountBlock'
 
 export const ContentFooter = () => {
 	const activeTodosCount = useSelector(selectActiveTodosCount)
@@ -18,8 +18,8 @@ export const ContentFooter = () => {
 
 	const filters = [
 		{id: 1, text: 'All' as typeof AllType, href: '#/'},
-		{id: 2, text: 'Active' as typeof ActiveType, href: '#/active'},
-		{id: 3, text: 'Completed' as typeof CompletedType, href: '#/completed'},
+		{id: 2, text: 'Active' as typeof ActiveType, href: '#/Active'},
+		{id: 3, text: 'Completed' as typeof CompletedType, href: '#/Completed'},
 	]
 
 	return (

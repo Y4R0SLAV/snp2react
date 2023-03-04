@@ -1,16 +1,33 @@
 import {
 	ActiveType,
-	AllType,
 	CompletedType,
 	initializeTodos,
 	selectFilter,
 	selectTodos,
+	setFilter,
+	toggleAll,
 } from '../../../../redux/reducers/todos'
 import s from './ContentMain.module.css'
 import {TodoItem} from './TodoItem/TodoItem'
 import {useDispatch, useSelector} from 'react-redux'
 import {useEffect} from 'react'
 import {getTodosLS, setTodosLS} from './../../../../localStorageInteraction'
+
+const ToggleAllBlock = () => {
+	const dispatch = useDispatch()
+
+	return (
+		<>
+			<input
+				id='toggle-all'
+				className={s.toggleAll}
+				onClick={(e) => dispatch(toggleAll())}
+				type='checkbox'
+			/>
+			<label htmlFor='toggle-all'>Mark all as complete</label>
+		</>
+	)
+}
 
 export const ContentMain = () => {
 	const todoItems = useSelector(selectTodos)
@@ -19,9 +36,21 @@ export const ContentMain = () => {
 	const dispatch = useDispatch()
 
 	useEffect(() => {
+		// инициализация туду
 		const todosFromLS = getTodosLS()
 		if (todosFromLS.length > 0) {
 			dispatch(initializeTodos(todosFromLS))
+		}
+
+		// инициализация фильтра
+		const href = window.location.href
+		let hrefArray = href.split('/')
+		let filter = hrefArray[hrefArray.length - 1]
+
+		if (filter === CompletedType) {
+			dispatch(setFilter(CompletedType))
+		} else if (filter === ActiveType) {
+			dispatch(setFilter(ActiveType))
 		}
 	}, [dispatch])
 
@@ -31,12 +60,7 @@ export const ContentMain = () => {
 
 	return (
 		<div className={s.Root}>
-			<input
-				id='toggle-all'
-				className={s.toggleAll}
-				type='checkbox'
-			/>
-			<label htmlFor='toggle-all'>Mark all as complete</label>
+			<ToggleAllBlock />
 
 			<ul className={s.items}>
 				{todoItems.map((todo) => {
