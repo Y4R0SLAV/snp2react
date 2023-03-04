@@ -1,0 +1,29 @@
+.clear {
+	z-index: 10;
+}
+
+.button {
+	display: block;
+	outline: none;
+	border: none;
+	background-color: white;
+	cursor: pointer;
+	color: #888;
+}
+
+.button:hover {
+	text-decoration: underline;
+}
+
+.hide {
+	opacity: 0;
+}
+
+@media screen and (max-width: 680px) {
+	.clear {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+	}
+}

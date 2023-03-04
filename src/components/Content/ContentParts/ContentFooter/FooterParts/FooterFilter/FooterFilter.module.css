@@ -1,0 +1,15 @@
+
+.filter a {
+  text-decoration: none;
+  margin: 3px;
+  padding: 3px 7px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  color: #777;
+}
+
+a.selected {
+  border-color: rgba(175, 47, 47, 0.2);
+}
+

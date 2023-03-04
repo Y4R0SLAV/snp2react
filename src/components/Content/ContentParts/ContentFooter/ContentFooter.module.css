@@ -1,83 +1,50 @@
-.form__footer {
-  position: relative;
-  border-top: 1px solid #e6e6e6;
-  height: 50px;
+.Root {
+	position: relative;
+	border-top: 1px solid #e6e6e6;
+	height: 50px;
 
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 15px;
-  
-  font-size: 14px;
-  color: #777;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 15px;
+
+	font-size: 14px;
+	color: #777;
 }
 
-.form__footer::before {
-  content: '';
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: 50px;
-  overflow: hidden;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2);
-  z-index: 0;
+.Root::before {
+	content: '';
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	height: 50px;
+	overflow: hidden;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2),
+		0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2);
+	z-index: 0;
 }
 
-.footer__filters {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  
-  cursor: pointer;
-  
-  z-index: 1;
-}
+.filters {
+	margin: 0 20px;
+	display: flex;
+	justify-content: space-around;
+	gap: 20px;
 
-.footer__filter a {
-  text-decoration: none;
-  margin: 3px;
-  padding: 3px 7px;
-  text-decoration: none;
-  border: 1px solid transparent;
-  border-radius: 3px;
-  color: #777;
-}
+	cursor: pointer;
 
-.footer__filters a.selected {
-  border-color: rgba(175, 47, 47, 0.2);
-}
-
-.footer__clear {
-  z-index: 10;
-}
-
-.footer__button {
-  display: block;
-  outline: none;
-  border: none;
-  background-color: white;
-  cursor: pointer;
-  color: #888;
-}
-
-.footer__button:hover {
-  text-decoration: underline;
-}
-
-.hide {
-  opacity: 0;
+	z-index: 1;
 }
 
 @media screen and (max-width: 680px) {
-  .footer__count, .footer__clear {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
+	.count {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+	}
 
-  .footer__filters {
-    gap: 0;
-  }
+	.filters {
+		gap: 0;
+	}
 }

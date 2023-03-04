@@ -1,34 +1,61 @@
-import { useState } from "react"
-import s from "./ContentFooter.module.css"
+import {useState} from 'react'
+import s from './ContentFooter.module.css'
+import {
+	AllType,
+	ActiveType,
+	CompletedType,
+	selectActiveTodosCount,
+} from './../../../../redux/reducers/todos'
+import {useSelector} from 'react-redux'
+import {FooterFilter} from './FooterParts/FooterFilter/FooterFilter'
+import {ClearButton} from './FooterParts/ClearButton/ClearButton'
+
+const CountBlock: React.FC<{count: number; cn: string}> = ({count, cn}) => {
+	let itemsOrItem = 'item'
+	if (count !== 1) {
+		itemsOrItem += 's'
+	}
+
+	return (
+		<div className={cn}>
+			<strong> {count} </strong> {itemsOrItem} left
+		</div>
+	)
+}
 
 export const ContentFooter = () => {
-  const [currentFilterId, setCurrentFilterId] = useState(1)
+	const activeTodosCount = useSelector(selectActiveTodosCount)
 
-  const filters = [{id: 1, text: "All", href: "#/"},
-  {id: 2, text: "Active", href: "#/active"},
-  {id: 3, text: "Completed", href: "#/completed"},
-]
+	const [currentFilterId, setCurrentFilterId] = useState(1)
 
-  return <div className={s.form__footer}>
+	const filters = [
+		{id: 1, text: 'All' as typeof AllType, href: '#/'},
+		{id: 2, text: 'Active' as typeof ActiveType, href: '#/active'},
+		{id: 3, text: 'Completed' as typeof CompletedType, href: '#/completed'},
+	]
 
-    <div className={s.footer__count}>
-      <strong> 2 </strong> items left
-    </div>
+	return (
+		<div className={s.Root}>
+			<CountBlock
+				count={activeTodosCount}
+				cn={s.count}
+			/>
 
-    <div className={s.footer__filters}>
-      {filters.map(filter => {
-        let cn = ""
+			<div className={s.filters}>
+				{filters.map((f) => {
+					return (
+						<FooterFilter
+							id={f.id}
+							text={f.text}
+							href={f.href}
+							currentFilterId={currentFilterId}
+							setCurrentFilterId={setCurrentFilterId}
+						/>
+					)
+				})}
+			</div>
 
-        if (currentFilterId === filter.id) { cn = s.selected }
-
-        return <div className={s.footer__filter} key={filter.id} onClick={e => setCurrentFilterId(filter.id)}>
-          <a href={filter.href} className={cn}> {filter.text} </a>
-        </div>
-      })}
-    </div>
-
-    <div className={s.footer__clear}>
-      <button className={s.footer__button + " " + s.hide}>Clear completed</button>
-    </div>
-</div>
+			<ClearButton />
+		</div>
+	)
 }
