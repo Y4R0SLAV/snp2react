@@ -9,19 +9,7 @@ import {
 import {useSelector} from 'react-redux'
 import {FooterFilter} from './FooterParts/FooterFilter/FooterFilter'
 import {ClearButton} from './FooterParts/ClearButton/ClearButton'
-
-const CountBlock: React.FC<{count: number; cn: string}> = ({count, cn}) => {
-	let itemsOrItem = 'item'
-	if (count !== 1) {
-		itemsOrItem += 's'
-	}
-
-	return (
-		<div className={cn}>
-			<strong> {count} </strong> {itemsOrItem} left
-		</div>
-	)
-}
+import { CountBlock } from '../../../common/CountBlock/CountBlock'
 
 export const ContentFooter = () => {
 	const activeTodosCount = useSelector(selectActiveTodosCount)
