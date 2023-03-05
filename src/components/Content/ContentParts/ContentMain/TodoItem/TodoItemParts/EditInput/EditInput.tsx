@@ -38,7 +38,7 @@ export const EditInput: FC<EditInputType> = ({id, title, setEditing, isEditing})
 	return (
 		<input
 			type='text'
-			className={cx({edit: true, editing: isEditing})}
+			className={cx({Root: true, editing: isEditing})}
 			value={editingText}
 			onChange={(e) => onChangeHandler(e)}
 			onBlur={() => change()}

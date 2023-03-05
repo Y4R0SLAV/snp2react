@@ -15,7 +15,7 @@ export const Checkbox: FC<{id: string; completed: boolean}> = ({id, completed}) 
 		<input
 			key={Math.random()}
 			onClick={(e) => onClickHandler()}
-			className={s.toggle}
+			className={s.Root}
 			type='checkbox'
 			defaultChecked={completed}
 		/>
