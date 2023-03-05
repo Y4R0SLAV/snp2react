@@ -1,35 +1,22 @@
 import {FC, useState} from 'react'
-import {useDispatch} from 'react-redux'
-import {removeTodo} from '../../../../../redux/reducers/todos'
 
 import {Checkbox} from './TodoItemParts/Checkbox/Checkbox'
 import {EditInput} from './TodoItemParts/EditInput/EditInput'
 import {TextBlock} from './TodoItemParts/TextBlock/TextBlock'
+import {TodoItemRemoveButton} from './TodoItemParts/RemoveButton/RemoveButton'
 
 import s from './TodoItem.module.css'
 import classNames from 'classnames/bind'
 
-const TodoItemRemoveButton: FC<{id: string}> = ({id}) => {
-	const dispatch = useDispatch()
-
-	const onClickHandler = (id: string) => {
-		dispatch(removeTodo(id))
-	}
-
-	return (
-		<button
-			onClick={(e) => onClickHandler(id)}
-			className={s.remove}
-		></button>
-	)
-}
-
 export const TodoItem: FC<TodoItemType & {hide: boolean}> = ({title, id, completed, hide}) => {
 	const [editing, setEditing] = useState(false)
+	const [hovered, setHovered] = useState(false)
 	const cx = classNames.bind(s)
 
 	return (
 		<li
+			onMouseEnter={() => setHovered(true)}
+			onMouseLeave={() => setHovered(false)}
 			id={id}
 			className={cx({Root: true, editing, completed, hide})}
 		>
@@ -44,7 +31,10 @@ export const TodoItem: FC<TodoItemType & {hide: boolean}> = ({title, id, complet
 					setEditing={setEditing}
 				/>
 
-				<TodoItemRemoveButton id={id} />
+				<TodoItemRemoveButton
+					id={id}
+					isHovered={hovered}
+				/>
 			</div>
 
 			<EditInput

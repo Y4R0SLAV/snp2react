@@ -24,33 +24,3 @@
 	border-top: 1px solid #e6e6e6;
 	position: relative;
 }
-
-.remove {
-	display: none;
-	position: absolute;
-	top: 0;
-	right: 10px;
-	bottom: 0;
-	width: 40px;
-	height: 40px;
-	margin: auto 0;
-	font-size: 30px;
-	color: #cc9a9a;
-	margin-bottom: 11px;
-	transition: color 0.2s ease-out;
-	border: none;
-	background: rgba(0, 0, 0, 0);
-	cursor: pointer;
-}
-
-.remove:hover {
-	color: #af5b5e;
-}
-
-.remove:after {
-	content: '×';
-}
-
-.item:hover .remove {
-	display: block;
-}
