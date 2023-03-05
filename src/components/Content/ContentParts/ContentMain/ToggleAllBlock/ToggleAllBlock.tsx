@@ -1,5 +1,5 @@
 import {useDispatch} from 'react-redux'
-import {toggleAll} from '../../../../../redux/reducers/todos'
+import {toggleAll} from 'reducers/todos'
 import s from './ToggleAllBlock.module.css'
 
 export const ToggleAllBlock = () => {

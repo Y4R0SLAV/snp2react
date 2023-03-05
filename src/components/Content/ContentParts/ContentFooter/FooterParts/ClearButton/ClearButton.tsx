@@ -1,7 +1,4 @@
-import {
-	clearCompletedTodos,
-	selectCompletedTodosCount,
-} from './../../../../../../redux/reducers/todos'
+import {clearCompletedTodos, selectCompletedTodosCount} from 'reducers/todos'
 
 import {useDispatch, useSelector} from 'react-redux'
 import classNames from 'classnames/bind'
@@ -23,7 +20,7 @@ export const ClearButton = () => {
 				onClick={(e) => clearButtonHandler(e)}
 				className={cx({button: true, hide: completedTodosCount === 0})}
 			>
-				Clear completed {completedTodosCount}
+				Clear completed
 			</button>
 		</div>
 	)

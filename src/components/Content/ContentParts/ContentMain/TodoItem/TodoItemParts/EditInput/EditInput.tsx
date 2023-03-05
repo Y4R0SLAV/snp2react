@@ -1,6 +1,6 @@
 import {FC, useState} from 'react'
 import {useDispatch} from 'react-redux'
-import {changeTextTodo} from '../../../../../../../redux/reducers/todos'
+import {changeTextTodo} from 'reducers/todos'
 
 import s from './EditInput.module.css'
 import classNames from 'classnames/bind'

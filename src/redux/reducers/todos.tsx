@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit'
 import type {PayloadAction} from '@reduxjs/toolkit'
-import {TodoItemType} from '../../components/Content/ContentParts/ContentMain/TodoItem/TodoItem'
+import {TodoItemType} from 'src/components/Content/ContentParts/ContentMain/TodoItem/TodoItem'
 import {RootState} from '../store'
 
 export const AllType = 'All'

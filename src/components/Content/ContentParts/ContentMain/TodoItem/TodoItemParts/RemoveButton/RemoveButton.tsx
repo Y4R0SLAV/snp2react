@@ -1,5 +1,5 @@
 import {useDispatch} from 'react-redux'
-import {removeTodo} from '../../../../../../../redux/reducers/todos'
+import {removeTodo} from 'reducers/todos'
 import s from './RemoveButton.module.css'
 import classNames from 'classnames/bind'
 

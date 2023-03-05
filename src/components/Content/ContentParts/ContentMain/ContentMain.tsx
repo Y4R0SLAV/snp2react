@@ -5,12 +5,12 @@ import {
 	selectFilter,
 	selectTodos,
 	setFilter,
-} from '../../../../redux/reducers/todos'
+} from 'reducers/todos'
 import s from './ContentMain.module.css'
 import {TodoItem} from './TodoItem/TodoItem'
 import {useDispatch, useSelector} from 'react-redux'
 import {useEffect} from 'react'
-import {getTodosLS, setTodosLS} from './../../../../localStorageInteraction'
+import {getTodosLS, setTodosLS} from 'src/localStorageInteraction'
 import {useLocation} from 'react-router'
 import {ToggleAllBlock} from './ToggleAllBlock/ToggleAllBlock'
 

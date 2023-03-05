@@ -1,4 +1,4 @@
-import {setFilter, FilterType} from './../../../../../../redux/reducers/todos'
+import {setFilter, FilterType} from 'reducers/todos'
 
 import {Link} from 'react-router-dom'
 

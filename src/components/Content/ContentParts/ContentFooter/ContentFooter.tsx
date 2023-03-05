@@ -1,15 +1,10 @@
 import {useState} from 'react'
 import s from './ContentFooter.module.css'
-import {
-	AllType,
-	ActiveType,
-	CompletedType,
-	selectActiveTodosCount,
-} from './../../../../redux/reducers/todos'
+import {AllType, ActiveType, CompletedType, selectActiveTodosCount} from 'reducers/todos'
 import {useSelector} from 'react-redux'
 import {FooterFilter} from './FooterParts/FooterFilter/FooterFilter'
 import {ClearButton} from './FooterParts/ClearButton/ClearButton'
-import {CountBlock} from '../../../common/CountBlock/CountBlock'
+import {CountBlock} from 'common/CountBlock/CountBlock'
 
 export const ContentFooter = () => {
 	const activeTodosCount = useSelector(selectActiveTodosCount)

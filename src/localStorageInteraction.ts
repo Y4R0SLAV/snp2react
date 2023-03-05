@@ -1,4 +1,4 @@
-import {TodoItemType} from './components/Content/ContentParts/ContentMain/TodoItem/TodoItem'
+import {TodoItemType} from 'src/components/Content/ContentParts/ContentMain/TodoItem/TodoItem'
 
 export const getTodosLS = (): Array<TodoItemType> => {
 	const todos = localStorage.getItem('todos')
