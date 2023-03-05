@@ -28,6 +28,7 @@ export const ContentFooter = () => {
 				{filters.map((f) => {
 					return (
 						<FooterFilter
+							key={f.id}
 							id={f.id}
 							text={f.text}
 							href={f.href}
