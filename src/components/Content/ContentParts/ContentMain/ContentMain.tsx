@@ -1,6 +1,7 @@
 import {
 	ActiveType,
 	CompletedType,
+	FilterType,
 	initializeTodos,
 	selectFilter,
 	selectTodos,
@@ -11,13 +12,11 @@ import {TodoItem} from './TodoItem/TodoItem'
 import {useDispatch, useSelector} from 'react-redux'
 import {useEffect} from 'react'
 import {getTodosLS, setTodosLS} from 'src/localStorageInteraction'
-import {useLocation} from 'react-router'
 import {ToggleAllBlock} from './ToggleAllBlock/ToggleAllBlock'
 
-export const ContentMain = () => {
+export const ContentMain: React.FC<{filter: FilterType}> = ({filter}) => {
 	const todoItems = useSelector(selectTodos)
 	const todosFilter = useSelector(selectFilter)
-	const location = useLocation()
 
 	const dispatch = useDispatch()
 
@@ -29,8 +28,6 @@ export const ContentMain = () => {
 		}
 
 		// инициализация фильтра
-		let filter = location.hash.slice(2)
-
 		if (filter === CompletedType) {
 			dispatch(setFilter(CompletedType))
 		} else if (filter === ActiveType) {
