@@ -1,5 +1,7 @@
 import {setFilter, FilterType} from './../../../../../../redux/reducers/todos'
 
+import {Link} from 'react-router-dom'
+
 import {useDispatch} from 'react-redux'
 import classNames from 'classnames/bind'
 import s from './FooterFilter.module.css'
@@ -23,12 +25,12 @@ export const FooterFilter: React.FC<FooterFilterType> = ({
 				dispatch(setFilter(text))
 			}}
 		>
-			<a
-				href={href}
+			<Link
+				to={href}
 				className={cx({selected: currentFilterId === id})}
 			>
 				{text}
-			</a>
+			</Link>
 		</div>
 	)
 }

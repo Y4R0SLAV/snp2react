@@ -17,9 +17,9 @@ export const ContentFooter = () => {
 	const [currentFilterId, setCurrentFilterId] = useState(1)
 
 	const filters = [
-		{id: 1, text: 'All' as typeof AllType, href: '#/'},
-		{id: 2, text: 'Active' as typeof ActiveType, href: '#/Active'},
-		{id: 3, text: 'Completed' as typeof CompletedType, href: '#/Completed'},
+		{id: 1, text: 'All' as typeof AllType, href: '/'},
+		{id: 2, text: 'Active' as typeof ActiveType, href: '#/' + ActiveType},
+		{id: 3, text: 'Completed' as typeof CompletedType, href: '#/' + CompletedType},
 	]
 
 	return (

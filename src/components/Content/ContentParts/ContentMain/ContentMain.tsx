@@ -12,6 +12,7 @@ import {TodoItem} from './TodoItem/TodoItem'
 import {useDispatch, useSelector} from 'react-redux'
 import {useEffect} from 'react'
 import {getTodosLS, setTodosLS} from './../../../../localStorageInteraction'
+import {useLocation} from 'react-router'
 
 const ToggleAllBlock = () => {
 	const dispatch = useDispatch()
@@ -32,6 +33,7 @@ const ToggleAllBlock = () => {
 export const ContentMain = () => {
 	const todoItems = useSelector(selectTodos)
 	const todosFilter = useSelector(selectFilter)
+	const location = useLocation()
 
 	const dispatch = useDispatch()
 
@@ -43,16 +45,15 @@ export const ContentMain = () => {
 		}
 
 		// инициализация фильтра
-		const href = window.location.href
-		let hrefArray = href.split('/')
-		let filter = hrefArray[hrefArray.length - 1]
+		let filter = location.hash.slice(2)
 
 		if (filter === CompletedType) {
 			dispatch(setFilter(CompletedType))
 		} else if (filter === ActiveType) {
 			dispatch(setFilter(ActiveType))
 		}
-	}, [dispatch])
+	}, [])
+	// eslint ругается, что нет зависимостей, но они здесь не нужны!
 
 	useEffect(() => {
 		setTodosLS(todoItems)
