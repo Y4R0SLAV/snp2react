@@ -5,7 +5,6 @@ import {
 	selectFilter,
 	selectTodos,
 	setFilter,
-	toggleAll,
 } from '../../../../redux/reducers/todos'
 import s from './ContentMain.module.css'
 import {TodoItem} from './TodoItem/TodoItem'
@@ -13,22 +12,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {useEffect} from 'react'
 import {getTodosLS, setTodosLS} from './../../../../localStorageInteraction'
 import {useLocation} from 'react-router'
-
-const ToggleAllBlock = () => {
-	const dispatch = useDispatch()
-
-	return (
-		<>
-			<input
-				id='toggle-all'
-				className={s.toggleAll}
-				onClick={(e) => dispatch(toggleAll())}
-				type='checkbox'
-			/>
-			<label htmlFor='toggle-all'>Mark all as complete</label>
-		</>
-	)
-}
+import {ToggleAllBlock} from './ToggleAllBlock/ToggleAllBlock'
 
 export const ContentMain = () => {
 	const todoItems = useSelector(selectTodos)
@@ -52,8 +36,8 @@ export const ContentMain = () => {
 		} else if (filter === ActiveType) {
 			dispatch(setFilter(ActiveType))
 		}
-	}, [])
-	// eslint ругается, что нет зависимостей, но они здесь не нужны!
+	}, [dispatch])
+	// eslint ругается, что нет зависимостей с location, но они здесь не нужны!
 
 	useEffect(() => {
 		setTodosLS(todoItems)
@@ -67,15 +51,10 @@ export const ContentMain = () => {
 				{todoItems.map((todo) => {
 					let show = true
 
-					switch (todosFilter) {
-						case ActiveType:
-							show = todo.completed === false
-							break
-						case CompletedType:
-							show = todo.completed === true
-							break
-						default:
-							break
+					if (todosFilter === ActiveType) {
+						show = todo.completed === false
+					} else if (todosFilter === CompletedType) {
+						show = todo.completed === true
 					}
 
 					return (
