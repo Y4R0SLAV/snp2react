@@ -32,6 +32,7 @@ export const todosSlice = createSlice({
 		addTodo: (state, action: PayloadAction<TodoItemType>) => {
 			state.todos.push(action.payload)
 			state.activeCount += 1
+			state.count += 1
 		},
 
 		removeTodo: (state, action: PayloadAction<string>) => {
