@@ -92,6 +92,7 @@ export const todosSlice = createSlice({
 		clearCompletedTodos: (state) => {
 			const newTodos = state.todos.filter((todo) => todo.completed === false)
 			state.todos = newTodos
+			state.count -= state.completedCount
 		},
 
 		setFilter: (state, action: PayloadAction<FilterType>) => {
