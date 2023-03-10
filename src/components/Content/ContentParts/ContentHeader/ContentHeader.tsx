@@ -8,9 +8,9 @@ export const ContentHeader = () => {
 	const dispatch = useDispatch()
 
 	const createTodo = () => {
-		if (todoText) {
+		if (todoText.trim().length > 0) {
 			const id = Date.now()
-			dispatch(addTodo({title: todoText, id: id.toString(), completed: false}))
+			dispatch(addTodo({title: todoText.trim(), id: id.toString(), completed: false}))
 			setTodoText('')
 		}
 	}
