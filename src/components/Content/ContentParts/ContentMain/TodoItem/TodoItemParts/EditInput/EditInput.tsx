@@ -16,7 +16,7 @@ export const EditInput: FC<EditInputType> = ({id, title, setEditing}) => {
 
 	const change = () => {
 		if (editingText.trim().length > 0) {
-			dispatch(changeTextTodo({id, title: editingText}))
+			dispatch(changeTextTodo({id, title: editingText.trim()}))
 			setEditing(false)
 		}
 	}
