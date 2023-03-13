@@ -20,6 +20,17 @@ export const ContentMain: React.FC<{filter: FilterType}> = ({filter}) => {
 
 	const dispatch = useDispatch()
 
+	const getIsHide: (completed: boolean) => boolean = (completed) => {
+		let show = true
+
+		if (todosFilter === ActiveType) {
+			show = completed === false
+		} else if (todosFilter === CompletedType) {
+			show = completed === true
+		}
+		return !show
+	}
+
 	useEffect(() => {
 		// инициализация туду
 		const todosFromLS = getTodosLS()
@@ -46,13 +57,7 @@ export const ContentMain: React.FC<{filter: FilterType}> = ({filter}) => {
 
 			<ul className={s.items}>
 				{todoItems.map((todo) => {
-					let show = true
-
-					if (todosFilter === ActiveType) {
-						show = todo.completed === false
-					} else if (todosFilter === CompletedType) {
-						show = todo.completed === true
-					}
+					
 
 					return (
 						<TodoItem
@@ -60,7 +65,7 @@ export const ContentMain: React.FC<{filter: FilterType}> = ({filter}) => {
 							title={todo.title}
 							id={todo.id}
 							completed={todo.completed}
-							hide={!show}
+							hide={getIsHide(todo.completed)}
 						/>
 					)
 				})}
