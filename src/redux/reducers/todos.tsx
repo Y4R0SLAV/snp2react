@@ -36,7 +36,7 @@ export const todosSlice = createSlice({
 		},
 
 		removeTodo: (state, action: PayloadAction<string>) => {
-			let removingTodo = state.todos.find((todo) => todo.id === action.payload)
+			const removingTodo = state.todos.find((todo) => todo.id === action.payload)
 
 			state.todos = [...state.todos.filter((todo) => todo.id !== action.payload)]
 			state.count -= 1
@@ -51,8 +51,8 @@ export const todosSlice = createSlice({
 		initializeTodos: (state, action: PayloadAction<Array<TodoItemType>>) => {
 			state.todos = action.payload
 
-			let activeCount = action.payload.filter((item) => item.completed === false).length
-			let todosCount = action.payload.length
+			const activeCount = action.payload.filter((item) => item.completed === false).length
+			const todosCount = action.payload.length
 
 			state.count = todosCount
 			state.activeCount = activeCount
