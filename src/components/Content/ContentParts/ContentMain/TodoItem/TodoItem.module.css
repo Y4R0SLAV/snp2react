@@ -1,5 +1,6 @@
 .Root {
-	max-width: 1024px;
+	max-width: 680px;
+	transition: all 0.3s ease;
 }
 
 .editing {
@@ -13,7 +14,11 @@
 }
 
 .hide {
-	display: none;
+	/* добавил ещё высоту 0, т.к. пустое место оставалось*/
+	opacity: 0;
+	pointer-events: none;
+	transform:translateX(-200px);
+	height: 0;
 }
 
 .editing .item {
