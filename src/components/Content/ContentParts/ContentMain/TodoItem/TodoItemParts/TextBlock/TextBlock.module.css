@@ -5,4 +5,5 @@
 	line-height: 1.2;
 	transition: color 0.4s;
 	max-width: 100%;
+	cursor: pointer;
 }

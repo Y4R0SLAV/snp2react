@@ -15,6 +15,7 @@
 	-webkit-appearance: none;
 	appearance: none;
 	opacity: 0;
+	cursor: pointer;
 }
 
 /* ссылки взял из исходника */

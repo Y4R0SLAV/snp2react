@@ -17,6 +17,7 @@
 
 .hide {
 	opacity: 0;
+	cursor:unset ;
 }
 
 @media screen and (max-width: 680px) {
