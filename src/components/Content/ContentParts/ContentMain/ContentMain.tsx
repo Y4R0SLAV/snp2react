@@ -44,8 +44,7 @@ export const ContentMain: React.FC<{filter: FilterType}> = ({filter}) => {
 		} else if (filter === ActiveType) {
 			dispatch(setFilter(ActiveType))
 		}
-	}, [dispatch])
-	// eslint ругается, что нет зависимостей с location, но они здесь не нужны!
+	}, [dispatch, filter])
 
 	useEffect(() => {
 		setTodosLS(todoItems)
@@ -57,8 +56,6 @@ export const ContentMain: React.FC<{filter: FilterType}> = ({filter}) => {
 
 			<ul className={s.items}>
 				{todoItems.map((todo) => {
-					
-
 					return (
 						<TodoItem
 							key={todo.id}
