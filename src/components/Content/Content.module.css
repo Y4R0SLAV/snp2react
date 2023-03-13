@@ -1,9 +1,11 @@
 .Root {
 	margin: 0 30px;
+	max-width: 680px;
 }
 
 @media screen and (max-width: 680px) {
 	.Root {
 		margin: 0 10px;
+		width: auto;
 	}
 }

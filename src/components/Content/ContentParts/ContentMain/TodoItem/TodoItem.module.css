@@ -1,5 +1,6 @@
 .Root {
 	max-width: 680px;
+	min-width: 680px;
 	transition: all 0.5s ease;
 	height: auto;
 }
@@ -29,4 +30,16 @@
 .item {
 	border-top: 1px solid #e6e6e6;
 	position: relative;
+}
+
+@media (max-width: 720px) {
+	.Root {
+		min-width: 480px;
+	}
+}
+
+@media (max-width: 510px) {
+	.Root {
+		min-width: 290px;
+	}
 }
