@@ -1,6 +1,7 @@
 .Root {
 	max-width: 680px;
-	transition: all 0.3s ease;
+	transition: all 0.5s ease;
+	height: auto;
 }
 
 .editing {
@@ -17,7 +18,7 @@
 	/* добавил ещё высоту 0, т.к. пустое место оставалось*/
 	opacity: 0;
 	pointer-events: none;
-	transform:translateX(-200px);
+	transform: translateX(-400px);
 	height: 0;
 }
 
