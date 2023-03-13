@@ -19,30 +19,31 @@ export const TodoItem: FC<TodoItemType & {hide: boolean}> = ({title, id, complet
 			onMouseLeave={() => setHovered(false)}
 			id={id}
 			className={cx({Root: true, editing, completed, hide})}
-		>
-			<div className={s.item}>
-				<Checkbox
-					completed={completed}
-					id={id}
-				/>
-
-				<TextBlock
-					title={title}
-					setEditing={setEditing}
-				/>
-
-				<TodoItemRemoveButton
-					id={id}
-					isHovered={hovered}
-				/>
-			</div>
-
-			<EditInput
-				setEditing={setEditing}
-				id={id}
-				title={title}
-				isEditing={editing}
-			/>
+		>	
+			{	
+				editing 
+				? <EditInput
+						setEditing={setEditing}
+						id={id}
+						title={title}
+					/>
+				:	<div className={s.item}>
+						<Checkbox
+							completed={completed}
+							id={id}
+						/>
+	
+						<TextBlock
+							title={title}
+							setEditing={setEditing}
+						/>
+	
+						<TodoItemRemoveButton
+							id={id}
+							isHovered={hovered}
+						/>
+				</div>
+				}
 		</li>
 	)
 }

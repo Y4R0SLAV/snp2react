@@ -3,19 +3,16 @@ import {useDispatch} from 'react-redux'
 import {changeTextTodo} from 'reducers/todos'
 
 import s from './EditInput.module.css'
-import classNames from 'classnames/bind'
 
 type EditInputType = {
 	id: string
 	title: string
 	setEditing: (a: boolean) => void
-	isEditing: boolean
 }
 
-export const EditInput: FC<EditInputType> = ({id, title, setEditing, isEditing}) => {
+export const EditInput: FC<EditInputType> = ({id, title, setEditing}) => {
 	const [editingText, setEditingText] = useState(title)
 	const dispatch = useDispatch()
-	const cx = classNames.bind(s)
 
 	const change = () => {
 		if (editingText.trim().length > 0) {
@@ -38,11 +35,12 @@ export const EditInput: FC<EditInputType> = ({id, title, setEditing, isEditing})
 	return (
 		<input
 			type='text'
-			className={cx({Root: true, editing: isEditing})}
+			className={s.Root}
 			value={editingText}
 			onChange={(e) => onChangeHandler(e)}
 			onBlur={() => change()}
 			onKeyDown={(e) => onKeyDownHandler(e)}
+			autoFocus
 		/>
 	)
 }
