@@ -1,5 +1,6 @@
 .Root {
 	position: relative;
+	overflow: hidden;
 }
 
 .items {
